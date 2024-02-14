@@ -25,14 +25,14 @@ class Graph {
     delete this.adjacencyList[vertex];
   }
 
-//   {
-//     A: [ 'B', 'C' ],
-//     B: [ 'A', 'D' ],
-//     C: [ 'A', 'E' ],
-//     D: [ 'B', 'E', 'F' ],
-//     E: [ 'C', 'D', 'F' ],
-//     F: [ 'D', 'E' ]
-//   }
+  //   {
+  //     A: [ 'B', 'C' ],
+  //     B: [ 'A', 'D' ],
+  //     C: [ 'A', 'E' ],
+  //     D: [ 'B', 'E', 'F' ],
+  //     E: [ 'C', 'D', 'F' ],
+  //     F: [ 'D', 'E' ]
+  //   }
   depthFirstRecursive(start) {
     const result = [];
     const visited = {};
@@ -99,7 +99,8 @@ g.addVertex("A");
 g.addVertex("B");
 g.addVertex("C");
 g.addVertex("D");
-g.addVertex("E");``
+g.addVertex("E");
+
 g.addVertex("F");
 
 g.addEdge("A", "B");

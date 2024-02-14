@@ -15,14 +15,4 @@ function mostDigits(nums) {
   return maxDigits;
 }
 
-mostDigits([23,567,89,12234324,90])
-
-
-
-
-
-
-
-
-
-
+mostDigits([23, 567, 89, 12234324, 90]);

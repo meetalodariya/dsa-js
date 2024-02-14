@@ -4,8 +4,9 @@ class MaxBinaryHeap {
   }
   insert(element) {
     this.values.push(element);
-    this.bubbleUp(); 
+    this.bubbleUp();
   }
+  // O(logN)
   bubbleUp() {
     let idx = this.values.length - 1;
     const element = this.values[idx];
@@ -21,6 +22,7 @@ class MaxBinaryHeap {
     }
   }
 
+  // O(logN)
   extractMax() {
     if (this.values.length === 1) {
       return this.values.pop();
@@ -83,5 +85,3 @@ heap.extractMax();
 console.log(heap);
 
 // console.log(isHeap(heap.values));
-
-[33, 39, 41, 18, 27, 12];

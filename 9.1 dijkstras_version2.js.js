@@ -6,8 +6,6 @@ class Node {
 }
 
 class PriorityQueue {
-  static initNode() {}
-
   constructor() {
     this.values = [];
   }

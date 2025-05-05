@@ -17,7 +17,7 @@ const getNumberOfIslands = (matrix) => {
       // Found a piece of land
       count++;
 
-      // lets find connected pieces of land which forms an island.
+      // lets find connected pieces of land which form an island.
       const queue = [[i, j]];
 
       while (queue.length) {

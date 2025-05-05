@@ -32,4 +32,4 @@ function mergeSort(arr) {
   return merge(left, right);
 }
 
-console.log(mergeSort([12, 10, 3, 1, 43, 12, 54]));
+console.log(mergeSort([123, 12, 10, 3, 1, 43, 12, 54]));

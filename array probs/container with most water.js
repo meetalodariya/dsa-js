@@ -7,9 +7,6 @@ const getBiggestContainer = (arr) => {
 
   for (let i = 0; i < arr.length - 1; i++) {
     for (let j = i + 1; j < arr.length; j++) {
-      console.log("*************");
-      console.log(Math.min(arr[i], arr[j]));
-      console.log(j - i);
       const area = Math.min(arr[i], arr[j]) * (j - i);
 
       if (area > maxArea) {

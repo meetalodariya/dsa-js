@@ -220,4 +220,5 @@ tree.insert(120);
 tree.insert(11);
 tree.insert(7);
 
-console.log(tree.validate());
+console.log(tree.DFSPreOrder());
+console.log(tree.BFS());

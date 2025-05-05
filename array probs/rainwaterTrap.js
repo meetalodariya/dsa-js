@@ -60,7 +60,7 @@ const calculateAmountOfTrappedWaterOptimized = (arr) => {
       rightIdx--;
     }
   }
-
+wh
   return totalTrappedWater;
 };
 

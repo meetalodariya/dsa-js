@@ -29,7 +29,7 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
   return arr;
 }
 
-quickSort([100, -3, 2, 114, 6, Infinity, 199, 1, 2, 5, 3, 23]);
+// quickSort([100, -3, 2, 114, 6, Infinity, 199, 1, 2, 5, 3, 23]);
 quickSort([3, -3, 2, 6, 1, 2, 5, 23, 100, 114, 199, Infinity]);
 
 // [4,6,9,1,2,5,3]

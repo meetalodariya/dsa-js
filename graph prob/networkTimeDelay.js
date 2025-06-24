@@ -1,5 +1,5 @@
 // Priority Queue implementation
-class PriorityQueue {
+class PQ {
   constructor(comparator = (a, b) => a > b) {
     this._heap = [];
     this._comparator = comparator;
@@ -95,38 +95,44 @@ const t = [
   [3, 1, 5],
 ];
 
-const networkDelayTimeDjikstra = function (times, N, k) {
+const networkDelayTimeDjikstra = function (times, N, k)  {
   // Initialize the distances with Infinity.
-  const distances = new Array(N).fill(Infinity); // O(V)
+  const distances = new Array(N+1).fill(Infinity); // O(V)
   const adjList = distances.map(() => []); // O(V)
-  distances[k - 1] = 0;
+
+  // nodes are from 1..n;
+  distances[0] = -Infinity;
+  distances[k] = 0;
 
   // prepare the priority queue(minHeap) to take out node with shortest distance.
-  const heap = new PriorityQueue((a, b) => distances[a] < distances[b]);
-  heap.push(k - 1);
+  const heap = new PQ((a, b) => distances[a] < distances[b]);
+  heap.push(k);
+  const prev = {};
 
   // prepare adjacency list.
   // O(E) ; where E represents the edges in the graph.
   for (let i = 0; i < times.length; i++) {
-    const [source, target, weight] = times[i];
+      const [source, target, weight] = times[i];
 
-    adjList[source - 1].push([target - 1, weight]);
+      adjList[source].push([target, weight]);
+      prev[source] = null;
   }
 
   // While there are values in the heap.
   // traverse the nodes and find out the min distance from given node (k).
   while (!heap.isEmpty()) {
-    const currentVertex = heap.pop();
+      const currentVertex = heap.pop();
+      const adjacent = adjList[currentVertex];
+  
+      for (let i = 0; i < adjacent.length; i++) {
+        const [neighboringVertex, weight] = adjacent[i];
 
-    const adjacent = adjList[currentVertex];
-    for (let i = 0; i < adjacent.length; i++) {
-      const [neighboringVertex, weight] = adjacent[i];
-
-      if (distances[currentVertex] + weight < distances[neighboringVertex]) {
-        distances[neighboringVertex] = distances[currentVertex] + weight;
-        heap.push(neighboringVertex);
+        if (distances[currentVertex] + weight < distances[neighboringVertex]) {
+            distances[neighboringVertex] = distances[currentVertex] + weight;
+            heap.push(neighboringVertex);
+            prev[neighboringVertex] = currentVertex;
+        }
       }
-    }
   }
 
   const ans = Math.max(...distances);
@@ -176,6 +182,7 @@ const networkDelayTimeBellmanFord = function (times, N, k) {
   for (let j = 0; j < times.length; j++) {
     const [source, target, weight] = times[j];
 
+    // If we can relax the edge then there is a negative cycle.
     if (distances[source - 1] + weight < distances[target - 1]) {
       distances[target - 1] = distances[source - 1] + weight;
 

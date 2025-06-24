@@ -21,6 +21,20 @@ function pivot1(arr, start = 0, end = arr.length + 1) {
 
 // Version with ES2015 Syntax
 function pivot(arr, start = 0, end = arr.length - 1) {
+
+  let pvt = arr[right];
+  let p = left;
+
+  for (let i = start; i < end; i++) {
+      if (arr[i] <= pvt) {
+          [arr[p], arr[i]] = [arr[i], arr[p]];
+          p++;
+      }
+  }
+  [arr[p], arr[right]] = [arr[right], arr[p]];
+
+   return  p;       
+
   const swap = (arr, idx1, idx2) => {
     [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
   };

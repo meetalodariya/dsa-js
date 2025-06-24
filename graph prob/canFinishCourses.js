@@ -74,10 +74,12 @@ const canFinishAllCoursesTopologicalSort = (n, prereqList) => {
   }
 
   let count = 0;
-
+  const output = [];
   while (stack.length) {
     const current = stack.pop();
     count++;
+
+    output.push(current);
 
     const adjacent = adjList[current];
     if (!adjacent) continue;
@@ -92,46 +94,46 @@ const canFinishAllCoursesTopologicalSort = (n, prereqList) => {
     }
   }
 
-  return count === n;
+  return count === n ? output : [];
 };
 
-const canFinishAllCoursesTopologicalSortWithoutAdjList = function (
-  n,
-  prerequisites
-) {
-  const inDegree = new Array(n).fill(0);
+// const canFinishAllCoursesTopologicalSortWithoutAdjList = function (
+//   n,
+//   prerequisites
+// ) {
+//   const inDegree = new Array(n).fill(0);
 
-  for (let i = 0; i < prerequisites.length; i++) {
-    inDegree[prerequisites[i][0]]++;
-  }
+//   for (let i = 0; i < prerequisites.length; i++) {
+//     inDegree[prerequisites[i][0]]++;
+//   }
 
-  const stack = [];
+//   const stack = [];
 
-  for (let i = 0; i < inDegree.length; i++) {
-    if (inDegree[i] === 0) {
-      stack.push(i);
-    }
-  }
+//   for (let i = 0; i < inDegree.length; i++) {
+//     if (inDegree[i] === 0) {
+//       stack.push(i);
+//     }
+//   }
 
-  let count = 0;
+//   let count = 0;
 
-  while (stack.length) {
-    const current = stack.pop();
-    count++;
+//   while (stack.length) {
+//     const current = stack.pop();
+//     count++;
 
-    for (let i = 0; i < prerequisites.length; i++) {
-      const pair = prerequisites[i];
-      if (pair[1] === current) {
-        inDegree[pair[0]]--;
-        if (inDegree[pair[0]] === 0) {
-          stack.push(pair[0]);
-        }
-      }
-    }
-  }
+//     for (let i = 0; i < prerequisites.length; i++) {
+//       const pair = prerequisites[i];
+//       if (pair[1] === current) {
+//         inDegree[pair[0]]--;
+//         if (inDegree[pair[0]] === 0) {
+//           stack.push(pair[0]);
+//         }
+//       }
+//     }
+//   }
 
-  return count === n;
-};
+//   return count === n;
+// };
 
 const prereq = [
   [1, 0],
@@ -143,4 +145,14 @@ const prereq = [
   [4, 5],
 ];
 
-console.log(canFinishAllCoursesTopologicalSortWithoutAdjList(6, prereq));
+console.log(
+  canFinishAllCoursesTopologicalSort(6, [
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [4, 5],
+    [4, 6],
+    [6, 7],
+    [7, 2],
+  ])
+);
